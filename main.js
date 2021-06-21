@@ -45,6 +45,7 @@ const fillGridsList = (n) => {
     return array
 }
 
+
 const Array = fillGridsList(ELEMENTS)
 
 const RandomPos = (n) => Math.floor(Math.random() * n)
@@ -214,7 +215,7 @@ function gameloop(timestamp) {
         // Put your drawing code here
         draw()
         if (state == false) {
-            console.log('u lost')
+            alert('u lost')
         }
         move()
         logic()
