@@ -214,7 +214,7 @@ function gameloop(timestamp) {
         // Put your drawing code here
         draw()
         if (state == false) {
-            alert('game over')
+            console.log('lol')
         }
         move()
         logic()
