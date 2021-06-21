@@ -214,7 +214,7 @@ function gameloop(timestamp) {
         // Put your drawing code here
         draw()
         if (state == false) {
-            console.log('lol')
+            alert('GAME OVER... Refresh to restart')
         }
         move()
         logic()
