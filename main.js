@@ -111,10 +111,10 @@ function handleTouchStart(evt) {
 
 function logic() {
     if (food === snake[1][0]) {
-        if (direction === 'down') { snake[1].push(adjustPos(snake[1][0] - 15 * snake[0])) }
-        if (direction === 'up') { snake[1].push(adjustPos(snake[1][0] + 15 * snake[0])) }
-        if (direction === 'right') { snake[1].push(adjustToCol(snake[1][0] - 1 * snake[0]))}
-        if (direction === 'left') { snake[1].push(adjustToCol(snake[1][0] + 1 * snake[0]))}
+        if (direction === 'down') { snake[1].push(adjustPos(snake[1][snake[1].length-1] - 15)) }
+        if (direction === 'up') { snake[1].push(adjustPos(snake[1][snake[1].length-1] + 15))  }
+        if (direction === 'right') { snake[1].push(adjustToCol(snake[1][snake[1].length-1] - 1))}
+        if (direction === 'left') { snake[1].push(adjustToCol(snake[1][snake[1].length-1] + 1))}
         snake[0]++
         createfood()
     }
@@ -158,8 +158,10 @@ function createfood() {
     food = pos
 }
 
-    
+var down = false;  
 document.addEventListener('keydown', (event) => {
+    if (down) return;
+    down = true;
     var code = event.code;
     if (code == "ArrowDown" & direction != 'up') {
         direction = 'down'
@@ -176,9 +178,16 @@ document.addEventListener('keydown', (event) => {
   
 }, false);
 
+document.addEventListener('keyup', function () {
+    down = false;
+}, false);
+
+function gameover() {
+    
+}
+
 var stop = false;
 var frameCount = 0;
-var $results = ("#results");
 var fps, fpsInterval, startTime, now, then, elapsed;
 
 
@@ -214,7 +223,7 @@ function gameloop(timestamp) {
         // Put your drawing code here
         draw()
         if (state == false) {
-            alert('GAME OVER... Refresh to restart')
+            return
         }
         move()
         logic()
